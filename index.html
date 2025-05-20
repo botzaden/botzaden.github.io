@@ -25,6 +25,8 @@
 
         a:hover {
             color: #5bcaff;
+            /* text-decoration: underline; */
+            /* Раскомментируй, если нужно для обычных текстовых ссылок */
         }
 
         header,
@@ -86,6 +88,7 @@
             font-size: 16px;
         }
 
+        /* --- Стили для списков --- */
         ul {
             padding-left: 0;
             list-style: none;
@@ -101,30 +104,26 @@
         ol {
             padding-left: 0;
             list-style: none;
-            counter-reset: list-item-counter;
-
+            counter-reset: ol-counter;
         }
 
         ol li {
             margin-bottom: 10px;
             position: relative;
             padding-left: 35px;
-
         }
 
         ol li::before {
-            content: counter(list-item-counter) ". ";
-            counter-increment: list-item-counter;
+            content: counter(ol-counter) ". ";
+            counter-increment: ol-counter;
             color: #999;
-
             font-weight: bold;
             position: absolute;
             left: 0;
             top: 1px;
-
         }
 
-
+        /* --- Кнопки --- */
         .cta-button {
             background-color: #007bff;
             color: #fff;
@@ -149,12 +148,13 @@
             transform: scale(0.98);
         }
 
+        /* --- Карточки (общий стиль) --- */
         .card {
             background: #252526;
             padding: 25px;
             border-radius: 6px;
             border: 1px solid #3e3e3e;
-
+            /* margin-bottom убран, будет управляться gap-ом в grid-контейнере */
         }
 
         .card .options {
@@ -163,51 +163,54 @@
             margin-top: 15px;
         }
 
-
+        /* --- Контейнер для Тарифов и Примеров Ботов (используем CSS Grid) --- */
         .cards-grid-container {
-
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            /* Адаптивные колонки, minmax(МИНИМАЛЬНАЯ_ШИРИНА_КАРТОЧКИ, 1fr) */
             gap: 20px;
+            /* Отступы между карточками */
         }
 
-        .cards-grid-container .card {
-            flex-basis: calc(50% - 10px);
-            box-sizing: border-box;
-            margin-bottom: 0;
-        }
+        /* Для .card внутри .cards-grid-container отдельные стили для flex-basis не нужны, Grid сам управляет */
 
-        @media (max-width: 767px) {
-            .cards-grid-container .card {
-                flex-basis: 100%;
-            }
-        }
 
+        /* --- Секция и контейнер для Логотипов --- */
         .logos-section {
             max-width: 960px;
+            /* Секция с лого может быть шире */
         }
 
         .logos-container {
             display: flex;
             flex-wrap: wrap;
+            /* Обязательно для переноса */
             justify-content: center;
-            gap: 20px;
+            /* Центрируем логотипы в ряду */
+            align-items: center;
+            /* Выравниваем по центру вертикально */
+            gap: 25px;
+            /* Увеличил gap для больших отступов между лого */
             margin-top: 20px;
-            padding: 20px 0;
+            padding: 20px 10px;
+            /* Добавил немного бокового padding для контейнера */
             border-top: 1px solid #333;
             border-bottom: 1px solid #333;
         }
 
         .logos-container a {
+            /* Ссылка-обертка для логотипа */
             display: flex;
+            /* Чтобы img внутри хорошо центрировался */
             align-items: center;
             justify-content: center;
-            flex-grow: 0;
-            flex-shrink: 0;
-            flex-basis: 140px;
-            height: 70px;
-            box-sizing: border-box;
+            width: 130px;
+            /* Ширина контейнера для логотипа */
+            height: 65px;
+            /* Высота контейнера для логотипа */
             text-decoration: none;
+            /* background-color: rgba(255,0,0,0.1); */
+            /* Временный фон для отладки размеров */
         }
 
         .logos-container a:hover img {
@@ -216,44 +219,50 @@
         }
 
         .logos-container img {
-            max-height: 50px;
+            display: block;
+            /* Убирает лишние отступы под картинкой */
+            max-height: 100%;
             max-width: 100%;
             object-fit: contain;
             filter: grayscale(70%) opacity(0.8);
             transition: filter 0.3s ease, transform 0.3s ease;
         }
 
+        /* Адаптивность для логотипов */
+        @media (max-width: 767px) {
 
-        @media (max-width: 991px) {
-
-
-            .logos-container a {
-                flex-basis: 120px;
+            /* Планшеты и большие смартфоны */
+            .logos-container {
+                gap: 20px;
+                /* Чуть меньше gap */
             }
 
-            .logos-container img {
-                max-height: 45px;
+            .logos-container a {
+                width: 110px;
+                height: 55px;
             }
         }
 
-        @media (max-width: 576px) {
+        @media (max-width: 480px) {
 
-
+            /* Маленькие смартфоны */
             .logos-container {
                 gap: 15px;
             }
 
             .logos-container a {
-                flex-basis: calc(50% - 8px);
-                height: 80px;
+                width: calc(50% - 15px);
+                /* Делаем по 2 логотипа в ряд, 15px - это gap */
+                /* Если 2 логотипа, то width: calc(50% - (gap/2) ) */
+                /* Точнее: calc( (100% - (КолКолонок - 1)*gap) / КолКолонок ) */
+                /* Для 2 колонок и gap 15px: calc( (100% - 15px) / 2 ) */
+                height: 70px;
+                /* Можно увеличить высоту */
             }
 
-            .logos-container img {
-                max-height: 60px;
-            }
         }
 
-
+        /* --- Футер --- */
         footer {
             text-align: center;
             padding: 50px 20px;
@@ -311,7 +320,7 @@
         <p style="margin-bottom: 30px; text-align: center; color: #bbb;">Выберите подходящий пакет или свяжитесь с нами
             для индивидуального расчета под вашу задачу.</p>
 
-        <div class="tariffs-container">
+        <div class="cards-grid-container">
             <div class="card">
                 <h3><span style="font-size: 1.5em; margin-right: 10px;">⚙️</span>Мини-Бот</h3>
                 <p style="font-size: 22px; font-weight: bold; color: #4dabf7; margin-bottom: 15px;">от 5 000 ₽</p>
@@ -410,46 +419,49 @@
         <p style="margin-bottom: 30px; font-style: italic; color: #bbb;">Попробуйте наших демонстрационных ботов, чтобы
             увидеть некоторые из наших возможностей в действии. Каждый из них решает типовую задачу и показывает наш
             подход к разработке.</p>
-        <div class="cards-grid-container"></div>
-        <div class="card">
-            <h3>Автоприем в канал + Логирование</h3>
-            <p>Этот бот автоматически одобряет заявки на вступление в закрытый Telegram-канал и записывает данные о
-                новых подписчиках (с частичной маскировкой ID и username для приватности) в Google Таблицу.</p>
-            <p><strong>Протестировать:</strong> <a href="https://t.me/btzdn_demo_gate_bot"
-                    target="_blank">@btzdn_demo_gate_bot</a></p>
-            <p style="font-size: 0.9em; color: #888;"><em>(Бот предоставит ссылку на тестовый канал и публичную Google
-                    Таблицу с результатами)</em></p>
-        </div>
+        <div class="cards-grid-container">
+            <div class="card">
+                <h3>Автоприем в канал + Логирование</h3>
+                <p>Этот бот автоматически одобряет заявки на вступление в закрытый Telegram-канал и записывает данные о
+                    новых подписчиках (с частичной маскировкой ID и username для приватности) в Google Таблицу.</p>
+                <p><strong>Протестировать:</strong> <a href="https://t.me/btzdn_demo_gate_bot"
+                        target="_blank">@btzdn_demo_gate_bot</a></p>
+                <p style="font-size: 0.9em; color: #888;"><em>(Бот предоставит ссылку на тестовый канал и публичную
+                        Google
+                        Таблицу с результатами)</em></p>
+            </div>
 
-        <div class="card">
-            <h3>Выдача лид-магнита за подписку</h3>
-            <p>Демонстрирует, как бот может выдавать полезный материал (например, PDF-гайд) только после того, как
-                пользователь подпишется на указанный Telegram-канал. Популярный сценарий для инфобизнеса.</p>
-            <p><strong>Протестировать:</strong> <a href="https://t.me/btzdn_demo_lead_bot"
-                    target="_blank">@btzdn_demo_lead_bot</a></p>
-            <p style="font-size: 0.9em; color: #888;"><em>(Бот предложит подписаться на тестовый канал для получения
-                    демо-материала)</em></p>
-        </div>
+            <div class="card">
+                <h3>Выдача лид-магнита за подписку</h3>
+                <p>Демонстрирует, как бот может выдавать полезный материал (например, PDF-гайд) только после того, как
+                    пользователь подпишется на указанный Telegram-канал. Популярный сценарий для инфобизнеса.</p>
+                <p><strong>Протестировать:</strong> <a href="https://t.me/btzdn_demo_lead_bot"
+                        target="_blank">@btzdn_demo_lead_bot</a></p>
+                <p style="font-size: 0.9em; color: #888;"><em>(Бот предложит подписаться на тестовый канал для получения
+                        демо-материала)</em></p>
+            </div>
 
-        <div class="card">
-            <h3>Сбор заявок / Брифинг</h3>
-            <p>Пример бота, который проводит пользователя по серии вопросов для сбора информации (например, для брифа на
-                разработку или заказа услуги) и сохраняет ответы в Google Таблицу.</p>
-            <p><strong>Протестировать:</strong> <a href="https://t.me/btzdn_demo_brief_bot"
-                    target="_blank">@btzdn_demo_brief_bot</a></p>
-            <p style="font-size: 0.9em; color: #888;"><em>(После прохождения опроса бот предоставит ссылку на публичную
-                    Google Таблицу с результатами)</em></p>
-        </div>
+            <div class="card">
+                <h3>Сбор заявок / Брифинг</h3>
+                <p>Пример бота, который проводит пользователя по серии вопросов для сбора информации (например, для
+                    брифа на
+                    разработку или заказа услуги) и сохраняет ответы в Google Таблицу.</p>
+                <p><strong>Протестировать:</strong> <a href="https://t.me/btzdn_demo_brief_bot"
+                        target="_blank">@btzdn_demo_brief_bot</a></p>
+                <p style="font-size: 0.9em; color: #888;"><em>(После прохождения опроса бот предоставит ссылку на
+                        публичную
+                        Google Таблицу с результатами)</em></p>
+            </div>
 
-        <div class="card">
-            <h3>Имитация записи на услугу</h3>
-            <p>Показывает, как может выглядеть процесс записи (например, в салон красоты) через бота: выбор услуги,
-                "доступного" дня и времени (демонстрационные слоты). Заявка также сохраняется в Google Таблицу.</p>
-            <p><strong>Протестировать:</strong> <a href="https://t.me/btzdn_demo_booking_bot"
-                    target="_blank">@btzdn_demo_booking_bot</a></p>
-            <p style="font-size: 0.9em; color: #888;"><em>(Бот проведет по шагам записи и даст ссылку на таблицу с
-                    демо-заявками)</em></p>
-        </div>
+            <div class="card">
+                <h3>Имитация записи на услугу</h3>
+                <p>Показывает, как может выглядеть процесс записи (например, в салон красоты) через бота: выбор услуги,
+                    "доступного" дня и времени (демонстрационные слоты). Заявка также сохраняется в Google Таблицу.</p>
+                <p><strong>Протестировать:</strong> <a href="https://t.me/btzdn_demo_booking_bot"
+                        target="_blank">@btzdn_demo_booking_bot</a></p>
+                <p style="font-size: 0.9em; color: #888;"><em>(Бот проведет по шагам записи и даст ссылку на таблицу с
+                        демо-заявками)</em></p>
+            </div>
         </div>
 
         <p style="margin-top: 30px;"><em>Это лишь демонстрационные примеры для иллюстрации типовых решений. Мы готовы
