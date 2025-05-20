@@ -23,7 +23,7 @@
         }
 
         a:hover {
-            text-decoration: underline;
+            color: #5bcaff;
         }
 
         header,
@@ -74,10 +74,10 @@
         }
 
         h3 {
-            font-size: 22px;
+            font-size: 20px;
             color: #fafafa;
             margin-top: 0;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         p,
@@ -85,23 +85,36 @@
             font-size: 16px;
         }
 
-        ul,
-        ol {
+
+        ul {
             padding-left: 0;
             list-style: none;
         }
 
-        ul li::before,
-        ol li::before {
+        ul li::before {
             content: "// ";
             color: #666;
             margin-right: 8px;
             font-weight: bold;
         }
 
+
+        ol {
+            padding-left: 0;
+            list-style: none;
+            counter-reset: list-item;
+        }
+
+        ol li {
+            margin-bottom: 10px;
+        }
+
         ol li::before {
             content: counter(list-item) ". ";
             counter-increment: list-item;
+            color: #666;
+            margin-right: 8px;
+            font-weight: bold;
         }
 
         .cta-button {
@@ -115,27 +128,24 @@
             cursor: pointer;
             border-radius: 5px;
             font-weight: 500;
-            transition: background-color 0.2s ease;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            text-decoration: none !important;
         }
 
         .cta-button:hover {
             background-color: #0056b3;
-            text-decoration: none;
+            text-decoration: none !important;
+        }
+
+        .cta-button:active {
+            transform: scale(0.98);
         }
 
         .card {
             background: #252526;
             padding: 25px;
             border-radius: 6px;
-            margin-bottom: 25px;
             border: 1px solid #3e3e3e;
-        }
-
-        .card strong {
-            display: block;
-            font-size: 20px;
-            color: #fff;
-            margin-bottom: 10px;
         }
 
         .card .options {
@@ -144,50 +154,67 @@
             margin-top: 15px;
         }
 
+        .logos-section {
+            max-width: 960px;
+        }
+
         .logos-container {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-evenly;
             align-items: center;
             flex-wrap: wrap;
-            margin-top: 30px;
+            margin-top: 20px;
             padding: 20px 0;
             border-top: 1px solid #333;
             border-bottom: 1px solid #333;
         }
 
+        .logos-container a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            flex-grow: 1;
+            flex-basis: 150px;
+            max-width: 180px;
+            box-sizing: border-box;
+            text-decoration: none;
+        }
+
+        .logos-container a:hover img {
+            filter: grayscale(0%) opacity(1);
+            transform: scale(1.05);
+        }
+
+
         .logos-container img {
-            height: 45px;
-            margin: 10px 5px;
+            max-height: 50px;
+            max-width: 100%;
+            object-fit: contain;
             filter: grayscale(80%) opacity(0.7);
             transition: filter 0.3s ease, transform 0.3s ease;
-            /* flex-grow: 1; */
-            /* Растягивание */
-            /* flex-shrink: 0; */
-            /* Отсутствие сжатия */
         }
+
 
         @media (max-width: 767px) {
-            .logos-container {
-                justify-content: center;
+            .logos-container a {
+                flex-basis: calc(33.33% - 20px);
+                max-width: none;
             }
 
             .logos-container img {
-                height: 40px;
-                margin: 10px;
-                /* flex-basis: calc(33.33% - 20px); */
-                /* flex-basis: calc(50% - 20px); */
+                max-height: 45px;
             }
         }
 
-        @media (max-width: 480px) {
-
-            .logos-container img {
+        @media (max-width: 576px) {
+            .logos-container a {
                 flex-basis: calc(50% - 20px);
             }
-        }
 
-        .logos-container img:hover {
-            filter: grayscale(0%) opacity(1);
+            .logos-container img {
+                max-height: 50px;
+            }
         }
 
         footer {
@@ -201,14 +228,13 @@
         .tariffs-container {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-between;
-            /* space-around */
             gap: 20px;
         }
 
         .tariffs-container .card {
             flex-basis: calc(50% - 10px);
             box-sizing: border-box;
+            margin-bottom: 0;
         }
 
         @media (max-width: 767px) {
@@ -243,7 +269,7 @@
     </section>
 
     <section>
-        <h2>// Почему Botzaden – это ваш выбор:</h2>
+        <h2>// Почему botzaden. – это ваш выбор:</h2>
         <ul>
             <li>🔥 <strong>Только Python, никаких конструкторов:</strong> Полная кастомизация, надежность и
                 независимость от сторонних платформ.</li>
@@ -261,7 +287,7 @@
     </section>
 
     <section>
-        <h2>// Наши тарифы (Прозрачно и по делу):</h2>
+        <h2>// Наши тарифы:</h2>
         <p style="margin-bottom: 30px; text-align: center; color: #bbb;">Выберите подходящий пакет или свяжитесь с нами
             для индивидуального расчета под вашу задачу.</p>
 
@@ -326,7 +352,7 @@
             принципу Zer0 Bullshit – никаких скрытых платежей.</p>
 
         <div style="text-align: center;">
-            <a href="https://t.me/botzaden_bot?start=web_tariffs" target="_blank" class="cta-button">Обсудить мой проект
+            <a href="https://t.me/botzaden_bot?start=web01" target="_blank" class="cta-button">Обсудить мой проект
                 и получить точный расчет</a>
         </div>
     </section>
@@ -358,13 +384,13 @@
     </section>
 
     <section>
-        <h2>// Примеры того, что мы можем (Наши Демо-боты):</h2>
+        <h2>// Примеры того, что мы можем (наши демо-боты):</h2>
         <p style="margin-bottom: 30px; font-style: italic; color: #bbb;">Попробуйте наших демонстрационных ботов, чтобы
             увидеть некоторые из наших возможностей в действии. Каждый из них решает типовую задачу и показывает наш
             подход к разработке.</p>
 
         <div class="card">
-            <h3>Автоприем в канал + Логирование (Демо)</h3>
+            <h3>Автоприем в канал + Логирование</h3>
             <p>Этот бот автоматически одобряет заявки на вступление в закрытый Telegram-канал и записывает данные о
                 новых подписчиках (с частичной маскировкой ID и username для приватности) в Google Таблицу.</p>
             <p><strong>Протестировать:</strong> <a href="https://t.me/btzdn_demo_gate_bot"
@@ -374,7 +400,7 @@
         </div>
 
         <div class="card">
-            <h3>Выдача лид-магнита за подписку (Демо)</h3>
+            <h3>Выдача лид-магнита за подписку</h3>
             <p>Демонстрирует, как бот может выдавать полезный материал (например, PDF-гайд) только после того, как
                 пользователь подпишется на указанный Telegram-канал. Популярный сценарий для инфобизнеса.</p>
             <p><strong>Протестировать:</strong> <a href="https://t.me/btzdn_demo_lead_bot"
@@ -384,7 +410,7 @@
         </div>
 
         <div class="card">
-            <h3>Сбор заявок / Брифинг (Демо)</h3>
+            <h3>Сбор заявок / Брифинг</h3>
             <p>Пример бота, который проводит пользователя по серии вопросов для сбора информации (например, для брифа на
                 разработку или заказа услуги) и сохраняет ответы в Google Таблицу.</p>
             <p><strong>Протестировать:</strong> <a href="https://t.me/btzdn_demo_brief_bot"
@@ -394,7 +420,7 @@
         </div>
 
         <div class="card">
-            <h3>Имитация записи на услугу (Демо)</h3>
+            <h3>Имитация записи на услугу</h3>
             <p>Показывает, как может выглядеть процесс записи (например, в салон красоты) через бота: выбор услуги,
                 "доступного" дня и времени (демонстрационные слоты). Заявка также сохраняется в Google Таблицу.</p>
             <p><strong>Протестировать:</strong> <a href="https://t.me/btzdn_demo_booking_bot"
@@ -409,7 +435,7 @@
     </section>
 
     <section>
-        <h2>// Наш процесс (просто и эффективно):</h2>
+        <h2>// Наш процесс:</h2>
         <ol>
             <li><strong>Заявка / Бриф:</strong> Вы запускаете нашего бота-ассистента для заполнения брифа: <a
                     href="https://t.me/botzaden_bot?start=web01" target="_blank">@botzaden_bot</a> или пишете
@@ -428,7 +454,7 @@
     </section>
 
     <section>
-        <h2>// Кто такие Botzaden (если коротко):</h2>
+        <h2>// Кто такие botzaden.:</h2>
         <p>Мы – команда с глубокой экспертизой в создании Telegram-ботов и не только на Python. Наша цель –
             предоставлять быстрые, качественные и честные решения для вашего бизнеса, без лишней бюрократии и "воды".
             Мы верим в код, который работает, и в партнерство, основанное на результате.</p>
@@ -448,7 +474,7 @@
     </section>
 
     <footer>
-        © 2024 Botzaden. // Zer0 Bullshit Guaranteed.
+        © 2025 botzaden. // Zer0 Bullshit Guaranteed.
     </footer>
 </body>
 
