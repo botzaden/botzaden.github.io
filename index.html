@@ -8,6 +8,7 @@
     <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        /* --- Общие стили --- */
         body {
             background-color: #1e1e1e;
             color: #d4d4d4;
@@ -85,7 +86,6 @@
             font-size: 16px;
         }
 
-
         ul {
             padding-left: 0;
             list-style: none;
@@ -98,24 +98,32 @@
             font-weight: bold;
         }
 
-
         ol {
             padding-left: 0;
             list-style: none;
-            counter-reset: list-item;
+            counter-reset: list-item-counter;
+
         }
 
         ol li {
             margin-bottom: 10px;
+            position: relative;
+            padding-left: 35px;
+
         }
 
         ol li::before {
-            content: counter(list-item) ". ";
-            counter-increment: list-item;
-            color: #666;
-            margin-right: 8px;
+            content: counter(list-item-counter) ". ";
+            counter-increment: list-item-counter;
+            color: #999;
+
             font-weight: bold;
+            position: absolute;
+            left: 0;
+            top: 1px;
+
         }
+
 
         .cta-button {
             background-color: #007bff;
@@ -146,6 +154,7 @@
             padding: 25px;
             border-radius: 6px;
             border: 1px solid #3e3e3e;
+
         }
 
         .card .options {
@@ -154,15 +163,35 @@
             margin-top: 15px;
         }
 
+
+        .cards-grid-container {
+
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .cards-grid-container .card {
+            flex-basis: calc(50% - 10px);
+            box-sizing: border-box;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 767px) {
+            .cards-grid-container .card {
+                flex-basis: 100%;
+            }
+        }
+
         .logos-section {
             max-width: 960px;
         }
 
         .logos-container {
             display: flex;
-            justify-content: space-evenly;
-            align-items: center;
             flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
             margin-top: 20px;
             padding: 20px 0;
             border-top: 1px solid #333;
@@ -173,33 +202,33 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px;
-            flex-grow: 1;
-            flex-basis: 150px;
-            max-width: 180px;
+            flex-grow: 0;
+            flex-shrink: 0;
+            flex-basis: 140px;
+            height: 70px;
             box-sizing: border-box;
             text-decoration: none;
         }
 
         .logos-container a:hover img {
             filter: grayscale(0%) opacity(1);
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
-
 
         .logos-container img {
             max-height: 50px;
             max-width: 100%;
             object-fit: contain;
-            filter: grayscale(80%) opacity(0.7);
+            filter: grayscale(70%) opacity(0.8);
             transition: filter 0.3s ease, transform 0.3s ease;
         }
 
 
-        @media (max-width: 767px) {
+        @media (max-width: 991px) {
+
+
             .logos-container a {
-                flex-basis: calc(33.33% - 20px);
-                max-width: none;
+                flex-basis: 120px;
             }
 
             .logos-container img {
@@ -208,14 +237,22 @@
         }
 
         @media (max-width: 576px) {
+
+
+            .logos-container {
+                gap: 15px;
+            }
+
             .logos-container a {
-                flex-basis: calc(50% - 20px);
+                flex-basis: calc(50% - 8px);
+                height: 80px;
             }
 
             .logos-container img {
-                max-height: 50px;
+                max-height: 60px;
             }
         }
+
 
         footer {
             text-align: center;
@@ -223,24 +260,6 @@
             font-size: 14px;
             color: #888;
             border-top: 1px solid #333;
-        }
-
-        .tariffs-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .tariffs-container .card {
-            flex-basis: calc(50% - 10px);
-            box-sizing: border-box;
-            margin-bottom: 0;
-        }
-
-        @media (max-width: 767px) {
-            .tariffs-container .card {
-                flex-basis: 100%;
-            }
         }
     </style>
 </head>
@@ -276,7 +295,7 @@
                 независимость от сторонних платформ.</li>
             <li>🚀 <strong>Быстрый результат:</strong> Часто запускаем рабочих ботов уже в течение 1-2 дней для
                 стандартных задач.</li>
-            <li>💯 <strong>Zer0 Bullshit Принцип:</strong> Прозрачные цены, честные сроки, понятные условия. Никаких
+            <li>💯 <strong>Zer0 Bulls#it Принцип:</strong> Прозрачные цены, честные сроки, понятные условия. Никаких
                 сюрпризов и скрытых платежей.</li>
             <li>⚙️ <strong>Боты, которые реально работают:</strong> Пишем качественный код, который выдерживает нагрузки
                 и не падает от каждого чиха.</li>
@@ -348,9 +367,10 @@
             </p>
         </div>
 
-        <p style="text-align: center; margin-top: 30px; font-style: italic; color: #999;">Все цены являются
-            ориентировочными, финальная стоимость определяется сложностью технического задания. Мы всегда работаем по
-            принципу Zer0 Bullshit – никаких скрытых платежей.</p>
+        <p style="text-align: center; margin-top: 30px; font-style: italic; color: #999;">Все цены на разработку
+            являются
+            ориентировочными, финальная стоимость определяется сложностью технического задания. Мы всегда работаем по –
+            никаких скрытых платежей.</p>
 
         <div style="text-align: center;">
             <a href="https://t.me/botzaden_bot?start=web01" target="_blank" class="cta-button">Обсудить мой проект
@@ -390,7 +410,7 @@
         <p style="margin-bottom: 30px; font-style: italic; color: #bbb;">Попробуйте наших демонстрационных ботов, чтобы
             увидеть некоторые из наших возможностей в действии. Каждый из них решает типовую задачу и показывает наш
             подход к разработке.</p>
-
+        <div class="cards-grid-container"></div>
         <div class="card">
             <h3>Автоприем в канал + Логирование</h3>
             <p>Этот бот автоматически одобряет заявки на вступление в закрытый Telegram-канал и записывает данные о
@@ -429,6 +449,7 @@
                     target="_blank">@btzdn_demo_booking_bot</a></p>
             <p style="font-size: 0.9em; color: #888;"><em>(Бот проведет по шагам записи и даст ссылку на таблицу с
                     демо-заявками)</em></p>
+        </div>
         </div>
 
         <p style="margin-top: 30px;"><em>Это лишь демонстрационные примеры для иллюстрации типовых решений. Мы готовы
@@ -476,7 +497,7 @@
     </section>
 
     <footer>
-        © 2025 <a href="https://t.me/botzaden_bot?start=web01" target="_blank">botzaden.</a> // Zer0 Bullshit
+        © 2025 <a href="https://t.me/botzaden_bot?start=web01" target="_blank">botzaden.</a> // Zer0 Bulls#it
         Guaranteed.
     </footer>
 </body>
