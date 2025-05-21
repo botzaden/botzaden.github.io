@@ -25,8 +25,6 @@
 
         a:hover {
             color: #5bcaff;
-            /* text-decoration: underline; */
-            /* Раскомментируй, если нужно для обычных текстовых ссылок */
         }
 
         header,
@@ -154,7 +152,6 @@
             padding: 25px;
             border-radius: 6px;
             border: 1px solid #3e3e3e;
-            /* margin-bottom убран, будет управляться gap-ом в grid-контейнере */
         }
 
         .card .options {
@@ -167,50 +164,34 @@
         .cards-grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            /* Адаптивные колонки, minmax(МИНИМАЛЬНАЯ_ШИРИНА_КАРТОЧКИ, 1fr) */
             gap: 20px;
-            /* Отступы между карточками */
         }
-
-        /* Для .card внутри .cards-grid-container отдельные стили для flex-basis не нужны, Grid сам управляет */
 
 
         /* --- Секция и контейнер для Логотипов --- */
         .logos-section {
             max-width: 960px;
-            /* Секция с лого может быть шире */
         }
 
         .logos-container {
             display: flex;
             flex-wrap: wrap;
-            /* Обязательно для переноса */
             justify-content: center;
-            /* Центрируем логотипы в ряду */
             align-items: center;
-            /* Выравниваем по центру вертикально */
             gap: 25px;
-            /* Увеличил gap для больших отступов между лого */
             margin-top: 20px;
             padding: 20px 10px;
-            /* Добавил немного бокового padding для контейнера */
             border-top: 1px solid #333;
             border-bottom: 1px solid #333;
         }
 
         .logos-container a {
-            /* Ссылка-обертка для логотипа */
             display: flex;
-            /* Чтобы img внутри хорошо центрировался */
             align-items: center;
             justify-content: center;
             width: 130px;
-            /* Ширина контейнера для логотипа */
             height: 65px;
-            /* Высота контейнера для логотипа */
             text-decoration: none;
-            /* background-color: rgba(255,0,0,0.1); */
-            /* Временный фон для отладки размеров */
         }
 
         .logos-container a:hover img {
@@ -220,7 +201,6 @@
 
         .logos-container img {
             display: block;
-            /* Убирает лишние отступы под картинкой */
             max-height: 100%;
             max-width: 100%;
             object-fit: contain;
@@ -234,7 +214,6 @@
             /* Планшеты и большие смартфоны */
             .logos-container {
                 gap: 20px;
-                /* Чуть меньше gap */
             }
 
             .logos-container a {
@@ -252,12 +231,7 @@
 
             .logos-container a {
                 width: calc(50% - 15px);
-                /* Делаем по 2 логотипа в ряд, 15px - это gap */
-                /* Если 2 логотипа, то width: calc(50% - (gap/2) ) */
-                /* Точнее: calc( (100% - (КолКолонок - 1)*gap) / КолКолонок ) */
-                /* Для 2 колонок и gap 15px: calc( (100% - 15px) / 2 ) */
                 height: 70px;
-                /* Можно увеличить высоту */
             }
 
         }
@@ -278,8 +252,8 @@
         <img src="botzaden_logo.png" alt="botzaden logo" class="logo-header">
         <h1>botzaden.</h1>
         <p class="subtitle">// custom_telegram_bots. built_fast. run_hard. zer0_bulls#it</p>
-        <p class="description">Разрабатываем кастомных Telegram-ботов на Python. Без конструкторов, без месячных
-            лимитов, без воды. Готовый бот – часто уже за 1 день. Весь код – ваш.</p>
+        <p class="description">Разрабатываем кастомных Telegram-ботов на Python. Без конструкторов, лимитов и воды. Для
+            стандартных задач – готовый бот уже за 1 день. Весь разработанный код принадлежит только вам.</p>
         <a href="https://t.me/botzaden_bot?start=web01" target="_blank" class="cta-button">Запустить бота-ассистента для
             заказа</a>
     </header>
