@@ -244,12 +244,92 @@
                     color: #888;
                     border-top: 1px solid #333;
                 }
-        
+                .review-carousel {
+                      max-width: 800px;
+                      margin: 50px auto;
+                      padding: 30px;
+                      background-color: #252526;
+                      border: 1px solid #3e3e3e;
+                      border-radius: 6px;
+                      position: relative;
+                      text-align: left;
+                    }
+                    
+                    .review-card {
+                      display: none;
+                      align-items: flex-start;
+                      gap: 20px;
+                    }
+                    
+                    .review-card.active {
+                      display: flex;
+                    }
+                    
+                    .review-avatar {
+                      width: 100px;
+                      height: 100px;
+                      border-radius: 50%;
+                      object-fit: cover;
+                      flex-shrink: 0;
+                      border: 2px solid #4dabf7;
+                    }
+                    
+                    .review-text {
+                      flex: 1;
+                    }
+                    
+                    .review-text .quote {
+                      font-style: italic;
+                      color: #ccc;
+                      margin-bottom: 10px;
+                    }
+                    
+                    .review-text .author {
+                      color: #888;
+                      font-weight: bold;
+                    }
+                    
+                    .dots {
+                      text-align: center;
+                      margin-top: 20px;
+                    }
+                    
+                    .dot {
+                      display: inline-block;
+                      width: 10px;
+                      height: 10px;
+                      margin: 0 5px;
+                      background-color: #4dabf7;
+                      border-radius: 50%;
+                      opacity: 0.3;
+                      cursor: pointer;
+                      transition: opacity 0.3s;
+                    }
+                    
+                    .dot.active {
+                      opacity: 1;
+                    }
+
     </style>
 
 </head>
     
 <body>
+
+    <script>
+  function showReview(index) {
+    const cards = document.querySelectorAll('.review-card');
+    const dots = document.querySelectorAll('.dot');
+
+    cards.forEach((card, i) => {
+      card.classList.toggle('active', i === index - 1);
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === index - 1);
+    });
+  }
+</script>
 
     <header>
         <img src="botzaden_logo.png" alt="botzaden logo" class="logo-header">
@@ -390,6 +470,29 @@
                 target="_blank">botzaden.</a> и скоро поделимся отзывами наших клиентов.
             Возможно, именно ваш проект станет нашей следующей историей успеха!
         </p>
+        <div class="review-carousel">
+          <div class="review-card active" id="review-1">
+            <img src="/reviews/1-lada.png" alt="Лада фото" class="review-avatar">
+            <div class="review-text">
+              <p class="quote">"Мы сделали франкештейна в тг, бот который: записывает на занятия, даёт полную инфу об уроках и преподавателях, записывает на спикинги(!) и даёт перейти в решу ЕГЭ бот на ИИ. Алекс (прим. CEO botzaden) — очень важная приходящая и уходящая (пока что) часть нашей команды и огромный источник роста. Огромное спасибо за работу 🙏🏻"</p>
+              <p class="author">— Лада, Ladada English</p>
+            </div>
+          </div>
+        
+          <div class="review-card" id="review-2">
+            <img src="/reviews/1-lada.png" alt="Ваш отзыв" class="review-avatar" style="filter: grayscale(100%);">
+            <div class="review-text">
+              <p class="quote">"Здесь может быть ваш отзыв."</p>
+              <p class="author">— Возможно, именно вы</p>
+            </div>
+          </div>
+        
+          <div class="dots">
+            <span class="dot active" onclick="showReview(1)"></span>
+            <span class="dot" onclick="showReview(2)"></span>
+          </div>
+        </div>
+
     </section>
 
     <section>
