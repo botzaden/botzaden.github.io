@@ -208,33 +208,6 @@
             transition: filter 0.3s ease, transform 0.3s ease;
         }
 
-        .cookie-banner {
-          position: fixed;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          background: #333;
-          color: #fff;
-          padding: 16px;
-          text-align: center;
-          font-family: sans-serif;
-          z-index: 9999;
-        }
-    
-        .cookie-banner button {
-          margin-left: 12px;
-          padding: 8px 16px;
-          background: #00b894;
-          border: none;
-          color: white;
-          cursor: pointer;
-          border-radius: 4px;
-        }
-    
-        .cookie-banner.hidden {
-          display: none;
-        }
-
         /* Адаптивность для логотипов */
         @media (max-width: 767px) {
 
@@ -271,10 +244,109 @@
             color: #888;
             border-top: 1px solid #333;
         }
+
+        /* Cookie consent */
+.cookie-consent-container {
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 8px 8px 0 0;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+.cookie-consent-container.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.cookie-content-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.cookie-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.cookie-text {
+    flex: 1;
+    padding-right: 30px;
+}
+
+@media (max-width: 768px) {
+    .cookie-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .cookie-text {
+        padding-right: 0;
+        margin-bottom: 15px;
+        text-align: left;
+        width: 100%;
+    }
+}
     </style>
 </head>
-
+    
 <body>
+    <script>
+// Cookie dialog
+    document.addEventListener('DOMContentLoaded', function () {
+        const cookieConsentWrapper = document.getElementById('cookieConsentWrapper');
+        const cookieConsent = document.getElementById('cookieConsent');
+        const cookieConsentBtn = document.getElementById('cookieConsentBtn');
+
+        if (!getCookie('cookieConsent')) {
+            setTimeout(() => {
+                cookieConsent.classList.add('show');
+            }, 500);
+        } else {
+            cookieConsentWrapper.style.display = 'none';
+        }
+
+        cookieConsentBtn.addEventListener('click', function () {
+            // Устанавливаем cookie на 365 дней
+            setCookie('cookieConsent', 'true', 365);
+            cookieConsent.classList.remove('show');
+            setTimeout(() => {
+                cookieConsentWrapper.style.display = 'none';
+            }, 500);
+        });
+
+        // Функция для установки cookie
+        function setCookie(name, value, days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + date.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        // Функция для получения cookie
+        function getCookie(name) {
+            const cookieName = name + "=";
+            const decodedCookie = decodeURIComponent(document.cookie);
+            const cookieArray = decodedCookie.split(';');
+
+            for (let i = 0; i < cookieArray.length; i++) {
+                let cookie = cookieArray[i];
+                while (cookie.charAt(0) === ' ') {
+                    cookie = cookie.substring(1);
+                }
+                if (cookie.indexOf(cookieName) === 0) {
+                    return cookie.substring(cookieName.length, cookie.length);
+                }
+            }
+            return "";
+        }
+    });
+    </script>
     <header>
         <img src="botzaden_logo.png" alt="botzaden logo" class="logo-header">
         <h1>botzaden.</h1>
@@ -507,24 +579,22 @@
                     href="https://t.me/botzaden_manager" target="_blank">@botzaden_manager</a></li>
         </ul>
     </section>
-
-    <div id="cookie-banner" class="hidden">
-  Мы используем cookies, чтобы сделать сайт лучше. 🍪
-  <button onclick="acceptCookies()">Окей</button>
+<div id="cookieConsentWrapper" class="fixed-bottom w-100">
+    <div class="cookie-content-wrapper">
+        <div id="cookieConsent" class="cookie-consent-container bg-light">
+            <div class="cookie-content">
+                <div class="cookie-text">
+                    <p class="mb-0">
+                        На нашем сайте используются куки-файлы, потому что без них всё плохо работает. А с ними — хорошо. Нажмите на кнопку «Согласен», если согласны с <a href="/pi">условиями обработки куки и данных</a> на сайте. Если не согласны, можете отключить куки в настройках браузера.
+                    </p>
+                </div>
+                <div>
+                    <button id="cookieConsentBtn" class="btn btn-primary">Согласен</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-<script>
-  function acceptCookies() {
-    localStorage.setItem('cookiesAccepted', 'true');
-    document.getElementById('cookie-banner').classList.add('hidden');
-  }
-
-  window.onload = function() {
-    if (!localStorage.getItem('cookiesAccepted')) {
-      document.getElementById('cookie-banner').classList.remove('hidden');
-    }
-  };
-</script>
 
     <footer>
         © 2025 <a href="https://t.me/botzaden_bot?start=web01" target="_blank">botzaden.</a> // ✅ Zer0 Bulls#it
