@@ -310,11 +310,59 @@
                       opacity: 1;
                     }
 
+                #cookie-strip {
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  background-color: #2b2b2b;
+                  color: #ccc;
+                  font-size: 14px;
+                  padding: 10px 20px;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  z-index: 9999;
+                  box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+                  font-family: 'Fira Code', monospace;
+                }
+                
+                #cookie-strip a {
+                  color: #4dabf7;
+                  text-decoration: underline;
+                }
+                
+                .cookie-close {
+                  cursor: pointer;
+                  color: #4dabf7;
+                  font-size: 16px;
+                  margin-left: 20px;
+                }
+                
+                #cookie-strip.hidden {
+                  display: none;
+                }
+
+
     </style>
 
 </head>
     
 <body>
+
+    <script>
+  function closeCookieStrip() {
+    document.getElementById("cookie-strip").classList.add("hidden");
+    localStorage.setItem("cookieAcknowledged", "true");
+  }
+
+  window.onload = function () {
+    if (localStorage.getItem("cookieAcknowledged") === "true") {
+      document.getElementById("cookie-strip").classList.add("hidden");
+    }
+  };
+</script>
+
 
     <script>
   function showReview(index) {
@@ -330,6 +378,11 @@
     });
   }
 </script>
+
+    <div id="cookie-strip">
+  <span>🍪 Мы используем временные файлы cookies. Продолжая находиться на сайте, вы соглашаетесь с нашей <a href="https://botzaden.ru/pi.html" target="_blank">политикой конфиденциальности</a>.</span>
+  <span class="cookie-close" onclick="closeCookieStrip()">✖</span>
+</div>
 
     <header>
         <img src="botzaden_logo.png" alt="botzaden logo" class="logo-header">
@@ -472,15 +525,15 @@
         </p>
         <div class="review-carousel">
           <div class="review-card active" id="review-1">
-            <img src="/reviews/1-lada.png" alt="Лада фото" class="review-avatar">
+            <img src="/reviews/lada-1.png" alt="Лада фото" class="review-avatar">
             <div class="review-text">
-              <p class="quote">"Мы сделали франкештейна в тг, бот который: записывает на занятия, даёт полную инфу об уроках и преподавателях, записывает на спикинги(!) и даёт перейти в решу ЕГЭ бот на ИИ. Алекс (прим. CEO botzaden) — очень важная приходящая и уходящая (пока что) часть нашей команды и огромный источник роста. Огромное спасибо за работу 🙏🏻"</p>
+              <p class="quote">"Мы сделали франкештейна в тг, бот который: записывает на занятия, даёт полную инфу об уроках и преподавателях, записывает на спикинги(!) и даёт перейти в решу ЕГЭ бот на ИИ. Алекс (прим. CEO botzaden) — огромный источник роста нашей команды. Огромное спасибо за работу 🙏🏻"</p>
               <p class="author">— Лада, Ladada English</p>
             </div>
           </div>
         
           <div class="review-card" id="review-2">
-            <img src="/reviews/1-lada.png" alt="Ваш отзыв" class="review-avatar" style="filter: grayscale(100%);">
+            <img src="/reviews/bot.png" alt="Ваш отзыв" class="review-avatar" style="filter: grayscale(100%);">
             <div class="review-text">
               <p class="quote">"Здесь может быть ваш отзыв."</p>
               <p class="author">— Возможно, именно вы</p>
