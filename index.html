@@ -208,6 +208,33 @@
             transition: filter 0.3s ease, transform 0.3s ease;
         }
 
+        .cookie-banner {
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: #333;
+          color: #fff;
+          padding: 16px;
+          text-align: center;
+          font-family: sans-serif;
+          z-index: 9999;
+        }
+    
+        .cookie-banner button {
+          margin-left: 12px;
+          padding: 8px 16px;
+          background: #00b894;
+          border: none;
+          color: white;
+          cursor: pointer;
+          border-radius: 4px;
+        }
+    
+        .cookie-banner.hidden {
+          display: none;
+        }
+
         /* Адаптивность для логотипов */
         @media (max-width: 767px) {
 
@@ -480,6 +507,24 @@
                     href="https://t.me/botzaden_manager" target="_blank">@botzaden_manager</a></li>
         </ul>
     </section>
+
+    <div id="cookie-banner" class="hidden">
+  Мы используем cookies, чтобы сделать сайт лучше. 🍪
+  <button onclick="acceptCookies()">Окей</button>
+</div>
+
+<script>
+  function acceptCookies() {
+    localStorage.setItem('cookiesAccepted', 'true');
+    document.getElementById('cookie-banner').classList.add('hidden');
+  }
+
+  window.onload = function() {
+    if (!localStorage.getItem('cookiesAccepted')) {
+      document.getElementById('cookie-banner').classList.remove('hidden');
+    }
+  };
+</script>
 
     <footer>
         © 2025 <a href="https://t.me/botzaden_bot?start=web01" target="_blank">botzaden.</a> // ✅ Zer0 Bulls#it
