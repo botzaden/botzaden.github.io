@@ -236,6 +236,54 @@
 
         }
 
+        
+            /* Cookie consent */
+            .cookie-consent-container {
+                box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+                border-radius: 8px 8px 0 0;
+                transform: translateY(100%);
+                opacity: 0;
+                transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+            }
+            
+            .cookie-consent-container.show {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            
+            .cookie-content-wrapper {
+                max-width: 900px;
+                margin: 0 auto;
+                padding: 0 15px;
+            }
+            
+            .cookie-content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 15px 0;
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+            
+            .cookie-text {
+                flex: 1;
+                padding-right: 30px;
+            }
+            
+            @media (max-width: 768px) {
+                .cookie-content {
+                    flex-direction: column;
+                    text-align: center;
+                }
+            
+                .cookie-text {
+                    padding-right: 0;
+                    margin-bottom: 15px;
+                    text-align: left;
+                    width: 100%;
+                }
+
         /* --- Футер --- */
         footer {
             text-align: center;
@@ -244,59 +292,10 @@
             color: #888;
             border-top: 1px solid #333;
         }
-
-        /* Cookie consent */
-.cookie-consent-container {
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 8px 8px 0 0;
-    transform: translateY(100%);
-    opacity: 0;
-    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
-}
-
-.cookie-consent-container.show {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.cookie-content-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-.cookie-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-.cookie-text {
-    flex: 1;
-    padding-right: 30px;
-}
-
-@media (max-width: 768px) {
-    .cookie-content {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .cookie-text {
-        padding-right: 0;
-        margin-bottom: 15px;
-        text-align: left;
-        width: 100%;
-    }
-}
+        
     </style>
-</head>
-    
-<body>
-    <script>
+
+        <script>
 // Cookie dialog
     document.addEventListener('DOMContentLoaded', function () {
         const cookieConsentWrapper = document.getElementById('cookieConsentWrapper');
@@ -347,6 +346,27 @@
         }
     });
     </script>
+
+    <div id="cookieConsentWrapper" class="fixed-bottom w-100">
+    <div class="cookie-content-wrapper">
+        <div id="cookieConsent" class="cookie-consent-container bg-light">
+            <div class="cookie-content">
+                <div class="cookie-text">
+                    <p class="mb-0">
+                        На нашем сайте используются куки-файлы, потому что без них всё плохо работает. А с ними — хорошо. Нажмите на кнопку «Согласен», если согласны с <a href="/pi">условиями обработки куки и данных</a> на сайте. Если не согласны, можете отключить куки в настройках браузера.
+                    </p>
+                </div>
+                <div>
+                    <button id="cookieConsentBtn" class="btn btn-primary">Согласен</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</head>
+    
+<body>
+
     <header>
         <img src="botzaden_logo.png" alt="botzaden logo" class="logo-header">
         <h1>botzaden.</h1>
@@ -579,22 +599,7 @@
                     href="https://t.me/botzaden_manager" target="_blank">@botzaden_manager</a></li>
         </ul>
     </section>
-<div id="cookieConsentWrapper" class="fixed-bottom w-100">
-    <div class="cookie-content-wrapper">
-        <div id="cookieConsent" class="cookie-consent-container bg-light">
-            <div class="cookie-content">
-                <div class="cookie-text">
-                    <p class="mb-0">
-                        На нашем сайте используются куки-файлы, потому что без них всё плохо работает. А с ними — хорошо. Нажмите на кнопку «Согласен», если согласны с <a href="/pi">условиями обработки куки и данных</a> на сайте. Если не согласны, можете отключить куки в настройках браузера.
-                    </p>
-                </div>
-                <div>
-                    <button id="cookieConsentBtn" class="btn btn-primary">Согласен</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+
 
     <footer>
         © 2025 <a href="https://t.me/botzaden_bot?start=web01" target="_blank">botzaden.</a> // ✅ Zer0 Bulls#it
