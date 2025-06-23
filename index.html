@@ -146,6 +146,27 @@
             transform: scale(0.98);
         }
 
+        /* --- Вторая кнопка (под видео) --- */
+        .secondary-cta {
+            background-color: transparent;
+            color: #ccc;
+            border: 1px solid #555;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 20px;
+            display: inline-block;
+            cursor: pointer;
+            border-radius: 5px;
+            font-weight: 400;
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .secondary-cta:hover {
+            background-color: #333;
+            border-color: #777;
+            color: #fff;
+        }
+
         /* --- Карточки (общий стиль) --- */
         .card {
             background: #252526;
@@ -173,7 +194,7 @@
             position: relative;
             padding-top: 56.25%;
             width: 100%;
-            border-radius: 6px;
+            border-radius: 10px;
             overflow: hidden;
             background-color: #000;
         }
@@ -208,12 +229,13 @@
         <p>Мы в <strong>botzaden.</strong> подходим к делу иначе. Честно, быстро, на чистом Python. Вы получаете именно ту систему, которая нужна вашему бизнесу, а не очередной компромисс.</p>
     </section>
 
-    <section>
+    <section style="text-align: center;">
         <h2>// Как это работает вживую:</h2>
         <p style="margin-bottom: 30px; text-align: center; color: #bbb;">Посмотрите 90-секундное демо нашей интеграции с CRM. Никакой воды, только реальный процесс: от заявки в боте до сделки в системе.</p>
         <div class="video-container">
             <iframe src="https://kinescope.io/embed/rEugCDbisk9KSJE6N1Numm" allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;" frameborder="0" allowfullscreen></iframe>
         </div>
+        <a href="https://t.me/botzaden_bot?start=full_demo" target="_blank" class="secondary-cta">Смотреть полное 15-минутное демо</a>
     </section>
 
     <section>
@@ -250,7 +272,7 @@
                 <p style="font-size: 22px; font-weight: bold; color: #4dabf7; margin-bottom: 15px;">от 150 000 ₽</p>
                 <p><strong>Результат:</strong> Уникальное IT-решение, заточенное под ваши бизнес-процессы. Когда конструкторы и типовые боты бессильны.</p>
                 <ul>
-                    <li>Интеграция с CRM (AmoCRM, Битрикс24), и другими системами.</li>
+                    <li>Интеграция с CRM (AmoCRM, Битрикс24) и другими системами.</li>
                     <li>Складской учёт для товарного бизнеса.</li>
                     <li>Календарь-планировщик для записи на услуги.</li>
                     <li>Разработка бэкенда на FastAPI, WebApp.</li>
