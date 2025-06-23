@@ -16,6 +16,7 @@
             margin: 0;
             padding: 0;
             line-height: 1.7;
+            padding-top: 45px; /* Добавляем отступ сверху, чтобы контент не перекрывался плашкой */
         }
 
         a {
@@ -206,10 +207,50 @@
             top: 0;
             left: 0;
         }
+        
+        /* --- Стили для Cookie плашки --- */
+        #cookie-strip {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          background-color: #2b2b2b;
+          color: #ccc;
+          font-size: 14px;
+          padding: 10px 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          z-index: 9999;
+          box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+          font-family: 'Fira Code', monospace;
+        }
+        
+        #cookie-strip a {
+          color: #4dabf7;
+          text-decoration: underline;
+        }
+        
+        .cookie-close {
+          cursor: pointer;
+          color: #4dabf7;
+          font-size: 16px;
+          margin-left: 20px;
+        }
+        
+        #cookie-strip.hidden {
+          display: none;
+        }
     </style>
 </head>
 
 <body>
+
+    <div id="cookie-strip">
+        <span>🍪 Мы используем временные файлы cookies. Продолжая находиться на сайте, вы соглашаетесь с нашей <a href="https://botzaden.ru/pi.html" target="_blank">политикой конфиденциальности</a>.</span>
+        <span class="cookie-close" onclick="closeCookieStrip()">✖</span>
+    </div>
+
     <header>
         <img src="botzaden_logo.png" alt="botzaden logo" class="logo-header">
         <h1>botzaden.</h1>
@@ -344,6 +385,21 @@
     <footer style="padding: 40px 20px; border-top: 1px solid #333; text-align: center; font-size: 14px; color: #888;">
         © 2025 <a href="https://t.me/botzaden_bot?start=web01" target="_blank">botzaden.</a> // ✅ Zer0 Bulls#it Guaranteed // 📄 <a href="/oferta.html" target="_blank">Публичная оферта</a>
     </footer>
+
+    <script>
+      function closeCookieStrip() {
+        document.getElementById("cookie-strip").classList.add("hidden");
+        document.body.style.paddingTop = '0';
+        localStorage.setItem("cookieAcknowledged", "true");
+      }
+    
+      window.onload = function () {
+        if (localStorage.getItem("cookieAcknowledged") === "true") {
+          document.getElementById("cookie-strip").classList.add("hidden");
+          document.body.style.paddingTop = '0';
+        }
+      };
+    </script>
 
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
